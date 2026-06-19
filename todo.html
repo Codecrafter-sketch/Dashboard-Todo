@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<style>
+ .todo-main {
+    background-color: rgb(3, 70, 70);
+    width: 400px;
+    height: auto;
+    margin: 200px auto 0 auto;
+    padding: 30px;
+    border-radius: 15px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    box-sizing: border-box;
+}
+
+h3 {
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    font-size: 23px;
+    font-weight: bold;
+    margin: 0;
+    color: white;
+}
+
+input {
+    padding: 10px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    outline: none;
+}
+
+button {
+    padding: 10px;
+    border-radius: 6px;
+    border: none;
+    background-color: #05bdf5;
+    font-weight: bold;
+    cursor: pointer;
+    width: 150px;
+    height: auto;
+    margin-left: 90px;
+}
+button:hover{
+  background-color: rgb(81, 158, 158);
+}
+</style>
+<body>
+  <div class="todo-main">
+    <h3>TODO List</h3>
+    <input id="inp" type="text" placeholder="Enter your Task">
+    <button onclick="addtodo()">ADD</button>
+    
+    <ul class="item" style="list-style: none; padding: 0; margin: 0;"></ul>
+  </div>
+
+  <script>
+  function addtodo(){
+    let item = document.querySelector("#inp");
+    let uielement = document.querySelector(".item");
+    
+    // 1. Cancel Logic: Agar input bilkul khali hai to alert do aur ruk jao
+    if (item.value === "") {
+      alert("Add your task");
+      return; 
+    }
+    
+    // 2. Naya 'li' element banaya
+    let li = document.createElement("li");
+    
+    
+    // 3. LI ki styling (Aap ke mutabiq stylish looks)
+    li.style.fontFamily = "'Lucida Sans', Geneva, Verdana, sans-serif";
+    li.style.backgroundColor = "rgba(255, 255, 255, 0.15)";
+    li.style.color = "white";                                
+    li.style.padding = "10px 15px";                         
+    li.style.margin = "8px 0";                              
+    li.style.borderRadius = "6px";                           
+    li.style.fontSize = "16px";
+    li.innerText = item.value;
+    let img=document.createElement("img");
+    img.setAttribute("src","images__2_-removebg-preview (1).png");
+    img.style.width = "20px";                   
+    img.style.cursor = "pointer";
+    img.style.marginLeft="240px";
+    img.onclick=function(){
+      this.parentElement.remove();
+    }
+
+
+
+    li.appendChild(img);
+    uielement.appendChild(li);
+    
+    
+    item.value = "";
+   
+  }
+  </script>
+</body>
+</html>
